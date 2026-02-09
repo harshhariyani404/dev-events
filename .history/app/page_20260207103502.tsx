@@ -1,0 +1,29 @@
+import Exploarbtn from "./components/Exploarbtn";
+import EventCard from "./components/EventCard";
+import { events } from "./lib/constants";
+
+const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
+
+const page = async () => {
+  const res = await fetch(`${BAse_URL}/api/events`)
+  return (
+    <section>
+      <h1 className="text-3xl font-bold text-center mt-10">Welcome to Dev Event App</h1>
+      <p className="text-center mt-4 text-gray-600">Hackethon, Meetups and Conforances all in one place</p>
+      <Exploarbtn />
+      <div className="mt-20 space-y-7">
+        <h3>Featured Events</h3>
+        <ul className="events">
+          {events.map((event) => (
+            <div key={event.title}>
+              <EventCard {...event} />
+            </div>
+          ))}
+
+        </ul>
+      </div>
+    </section>
+  );
+}
+
+export default page;
