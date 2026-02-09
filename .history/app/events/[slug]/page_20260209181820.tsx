@@ -82,7 +82,7 @@ const EventDetails = async ({ params }: { params: Promise<{ slug: string }> }) =
             <p>{event.organizer}</p>
           </section>
 
-          <EventTags tags={JSON.parse(event.tags)} />
+          <EventTags tags={JSON.parse(event.tag)} />
         </div>
         {/* right side */}
         <aside className="booking">

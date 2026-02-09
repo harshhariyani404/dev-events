@@ -75,14 +75,18 @@ const EventDetails = async ({ params }: { params: Promise<{ slug: string }> }) =
             <EventDetailItem icon="/icons/audience.svg" alt="audiance Icon" label={event.audience} />
           </section>
 
-          <EventAgenda agendaItems={JSON.parse(event.agenda)} />
+          <EventAgenda agendaItems={
+    Array.isArray(event.agenda) && typeof event.agenda[0] === 'string'
+      ? JSON.parse(event.agenda[0])
+      : event.agenda
+  } />
 
           <section className="felx-col-gap-2">
             <h2>About the Organizer</h2>
             <p>{event.organizer}</p>
           </section>
 
-          <EventTags tags={JSON.parse(event.tags)} />
+          <EventTags tags={event.tags} />
         </div>
         {/* right side */}
         <aside className="booking">

@@ -29,9 +29,12 @@ const EventAgenda = ({ agendaItems }: { agendaItems: string[] }) => {
 };
 
 const EventTags = ({ tags }: { tags: string[] }) => (
-  <div className="flex flex-row gap-1.5 flex-wrap">
+  <div className="flex flex-col gap-3">
     {tags.map((tag, index) => (
-      <div className="pill" key={index}>{tag}</div>
+      <div className="flex items-center gap-2" key={index}>
+        <span className="font-semibold text-gray-600">{index + 1}.</span>
+        <div className="pill">{tag}</div>
+      </div>
     ))}
   </div>
 );
@@ -75,14 +78,14 @@ const EventDetails = async ({ params }: { params: Promise<{ slug: string }> }) =
             <EventDetailItem icon="/icons/audience.svg" alt="audiance Icon" label={event.audience} />
           </section>
 
-          <EventAgenda agendaItems={JSON.parse(event.agenda)} />
+          <EventAgenda agendaItems={event.agenda} />
 
           <section className="felx-col-gap-2">
             <h2>About the Organizer</h2>
             <p>{event.organizer}</p>
           </section>
 
-          <EventTags tags={JSON.parse(event.tags)} />
+          <EventTags tags={event.tags} />
         </div>
         {/* right side */}
         <aside className="booking">
